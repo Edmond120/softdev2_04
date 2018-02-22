@@ -4,7 +4,7 @@
 The data we are using is from pokeapi.co. It is a list of all the pokemon and their stats and abilities. We will be storing this information for the 1st 151 pokemon in the database.
 '''
 
-import urllib2, json
+import urllib2, json, sys
 from pymongo import MongoClient
 
 ## Some globals
@@ -26,10 +26,16 @@ def insert_pokemon(num):
 	db.pokemons.insert_one(document)
 
 def main():
-	x = 1
-	while(x <= 151):
-		insert_pokemon(x)
-		x += 1
+	if(len(sys.argv) <= 1):
+		print "not enough arguments"
+		print "args"
+		print "-----"
+		print "upload_db - imports the dataset"
+	elif(sys.argv[1] == "upload_db"):
+		x = 1
+		while(x <= 151):
+			insert_pokemon(x)
+			x += 1
 
 
 if __name__ == '__main__':
