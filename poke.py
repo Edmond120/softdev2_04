@@ -37,6 +37,8 @@ def main():
 		print "args"
 		print "-----"
 		print "upload_db - imports the dataset"
+		print "heavier_than <weight> - gets every pokemon heavier than <weight>"
+		print "lighter_than <weight> - gets every pokemon lighter than <weight>"
 	elif(sys.argv[1] == "upload_db"):
 		x = 1
 		while(x <= 151):
