@@ -31,6 +31,19 @@ def heavier_than(weight):
 def lighter_than(weight):
 	return db.pokemons.find({ "weight" : { "$lt" : weight } })
 
+def has_type(_type):
+	return db.pokemons.find({'types.type.name' : _type})
+
+def get_types(poke):
+	types = []
+	for type in poke['types']:
+		types.append(type['type']['name'])
+	if(poke['types'][0]['slot'] == 2):
+		tmp = types[0]
+		types[0] = types[1]
+		types[1] = tmp
+	return types
+
 def main():
 	if(len(sys.argv) <= 1):
 		print "not enough arguments"
@@ -52,6 +65,10 @@ def main():
 		c = lighter_than(int(sys.argv[2]))
 		for i in c:
 			print i['name'] + ' : ' + str(i['weight'])
+	elif(sys.argv[1] == "has_type"):
+		c = has_type(sys.argv[2])
+		for i in c:
+			print i['name'] + ' : ' + str(get_types(i))
 
 
 if __name__ == '__main__':
