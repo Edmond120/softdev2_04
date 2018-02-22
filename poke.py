@@ -21,12 +21,15 @@ def get_poke_data(num):
     obj = obj.read()
     return json.loads(obj)
 
-def insert_pokemon():
-  pass
-
+def insert_pokemon(num):
+	document = get_poke_data(num)
+	db.pokemons.insert_one(document)
 
 def main():
-  print get_poke_data(1)
+	x = 1
+	while(x <= 151):
+		insert_pokemon(x)
+		x += 1
 
 
 if __name__ == '__main__':
