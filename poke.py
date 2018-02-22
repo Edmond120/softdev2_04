@@ -2,6 +2,10 @@
 
 '''
 The data we are using is from pokeapi.co. It is a list of all the pokemon and their stats and abilities. We will be storing this information for the 1st 151 pokemon in the database.
+command line argument examples:
+python poke.py has_type grass
+
+run with no command line arguments for list of commands
 '''
 
 import urllib2, json, sys
