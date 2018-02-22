@@ -25,6 +25,12 @@ def insert_pokemon(num):
 	document = get_poke_data(num)
 	db.pokemons.insert_one(document)
 
+def heavier_than(weight):
+	return db.pokemons.find({ "weight" : { "$gt" : weight } })
+
+def lighter_than(weight):
+	return db.pokemons.find({ "weight" : { "$lt" : weight } })
+
 def main():
 	if(len(sys.argv) <= 1):
 		print "not enough arguments"
@@ -36,6 +42,14 @@ def main():
 		while(x <= 151):
 			insert_pokemon(x)
 			x += 1
+	elif(sys.argv[1] == "heavier_than"):
+		c = heavier_than(int(sys.argv[2]))
+		for i in c:
+			print i['name'] + ' : ' + str(i['weight'])
+	elif(sys.argv[1] == "lighter_than"):
+		c = lighter_than(int(sys.argv[2]))
+		for i in c:
+			print i['name'] + ' : ' + str(i['weight'])
 
 
 if __name__ == '__main__':
