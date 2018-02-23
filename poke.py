@@ -70,8 +70,12 @@ def main():
         print "has_id <pokemon id num> - gets the pokemon with that id number"
     elif(sys.argv[1] == "upload_db"):
         x = 1
+        print "\ngetting data from api"
+        print "this might take a while"
+        print "------------------------"
         while(x <= 151):
             insert_pokemon(x)
+            print "completed " + str(x) + " out of 151"
             x += 1
     elif(sys.argv[1] == "heavier_than"):
         c = heavier_than(int(sys.argv[2]))
